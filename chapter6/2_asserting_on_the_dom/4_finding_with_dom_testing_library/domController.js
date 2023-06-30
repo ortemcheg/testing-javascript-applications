@@ -1,3 +1,5 @@
+const { addItem, data } = require("./inventoryController");
+
 const updateItemList = inventory => {
   const inventoryList = window.document.getElementById("item-list");
 
@@ -16,4 +18,11 @@ const updateItemList = inventory => {
   window.document.body.appendChild(p);
 };
 
-module.exports = { updateItemList };
+const handleAddItem = e => {
+  e.preventDefault();
+  const { name, quantity } = e.target.elements;
+  addItem(name.value, parseInt(quantity.value, 10));
+  updateItemList(data.inventory);
+};
+
+module.exports = { updateItemList, handleAddItem };
